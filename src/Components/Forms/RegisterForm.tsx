@@ -1,71 +1,42 @@
 "use client";
-import { register } from "@/Service/auth";
+import { registerUser } from "@/Service/auth";
+import { RegisterProps } from "@/Utils/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { ErrorMsg } from "../Error/Error";
 
 export const RegisterForm = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [pseudo, setPseudo] = useState("");
-  const [city, setCity] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [promoCode, setPromoCode] = useState("");
-
-  const [error, setError] = useState("");
   const { push } = useRouter();
 
-  function handleSubmit() {
-    setError("");
-    if (confirmPassword !== password) {
-      setError("Password and it's confirmation must be similar");
-    }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<RegisterProps>();
 
-    if (
-      !firstName ||
-      !lastName ||
-      !pseudo ||
-      !city ||
-      !email ||
-      !password ||
-      !confirmPassword
-    ) {
-      setError("All fields are required");
-    } else {
-      let registerData = {
-        firstName: firstName,
-        lastName: lastName,
-        pseudo: pseudo,
-        city: city,
-        email: email,
-        password: password,
-        promoCode: promoCode,
-      };
-      try {
-        register(registerData).then((res: any) => {
-          if (res.status === 201) {
-            if (typeof window !== "undefined") {
-              window.localStorage.setItem("token", res.data.access_token);
-              push("/");
-            }
+  const onSubmit: SubmitHandler<RegisterProps> = (data) =>
+    registerUser(data)
+      .then((res: any) => {
+        if (res.status === 201) {
+          if (typeof window !== "undefined") {
+            window.localStorage.setItem("token", res.data.access_token);
+            push("/");
           }
-        });
-      } catch (e) {
-        console.log("error", e);
-
-        setError("Credentials taken");
-      }
-    }
-  }
-
+        }
+      })
+      .catch((e) => console.log(e));
   return (
     <div className="max-w-lg mx-auto  bg-white dark:bg-gray-800 rounded-lg shadow-md px-8 py-10 flex flex-col items-center">
       <h1 className="text-xl font-bold text-center text-gray-700 dark:text-gray-200 mb-8">
         Create an account
       </h1>
-      <form action="#" className="w-full flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full flex flex-col gap-4"
+      >
         <div className="flex items-start flex-col justify-start">
           <label
             htmlFor="firstName"
@@ -76,11 +47,10 @@ export const RegisterForm = () => {
           <input
             type="text"
             id="firstName"
-            name="firstName"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setFirstName(e.target.value)}
+            {...register("firstName", { required: true })}
           />
+          {errors.firstName && <ErrorMsg error={"first name"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -93,11 +63,10 @@ export const RegisterForm = () => {
           <input
             type="text"
             id="lastName"
-            name="lastName"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setLastName(e.target.value)}
-          />
+            {...register("lastName", { required: true })}
+          />{" "}
+          {errors.lastName && <ErrorMsg error={"last name"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -110,11 +79,10 @@ export const RegisterForm = () => {
           <input
             type="text"
             id="pseudo"
-            name="pseudo"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setPseudo(e.target.value)}
+            {...register("pseudo", { required: true })}
           />
+          {errors.pseudo && <ErrorMsg error={"pseudo"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -127,11 +95,10 @@ export const RegisterForm = () => {
           <input
             type="text"
             id="city"
-            name="city"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setCity(e.target.value)}
+            {...register("city", { required: true })}
           />
+          {errors.city && <ErrorMsg error={"city"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -144,11 +111,10 @@ export const RegisterForm = () => {
           <input
             type="email"
             id="email"
-            name="email"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", { required: true })}
           />
+          {errors.email && <ErrorMsg error={"email"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -161,11 +127,10 @@ export const RegisterForm = () => {
           <input
             type="password"
             id="password"
-            name="password"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", { required: true })}
           />
+          {errors.password && <ErrorMsg error={"password"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -178,11 +143,10 @@ export const RegisterForm = () => {
           <input
             type="password"
             id="confirmPassword"
-            name="confirmPassword"
-            required
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            {...register("password", { required: true })}
           />
+          {errors.password && <ErrorMsg error={"confirm password"} />}
         </div>
 
         <div className="flex items-start flex-col justify-start">
@@ -195,20 +159,15 @@ export const RegisterForm = () => {
           <input
             type="text"
             id="promoCode"
-            name="promoCode"
             className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            onChange={(e) => setPromoCode(e.target.value)}
+            {...register("promoCode", { required: false })}
           />
         </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md shadow-sm"
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}
-        >
-          Register
-        </button>
+        <input
+          type="submit"
+          className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md shadow-sm"
+          value="Register"
+        />
       </form>
 
       <div className="mt-4 text-center">

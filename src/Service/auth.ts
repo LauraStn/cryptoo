@@ -1,7 +1,8 @@
 import { LoginProps, RegisterProps } from "@/Utils/types";
 import axios from "axios";
+import toast from "react-hot-toast";
 
-export async function register(registerProps: RegisterProps) {
+export async function registerUser(registerProps: RegisterProps) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}auth/signup`;
 
   let axiosConfig = {
@@ -32,6 +33,7 @@ export async function register(registerProps: RegisterProps) {
       //   throw new Error(e);
     });
 }
+
 export async function login(loginProps: LoginProps) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}auth/signin`;
 
@@ -54,7 +56,8 @@ export async function login(loginProps: LoginProps) {
     .then((res) => {
       return res;
     })
-    .catch((e) => {
-      throw new Error(e);
+    .catch((res) => {
+      // throw new Error(e);
+      return res;
     });
 }
