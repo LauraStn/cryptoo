@@ -12,3 +12,11 @@ export type LoginProps = {
   email: string;
   password: string;
 };
+
+export type CryptoProps = {
+  id: string;
+  name: string;
+  value: number;
+  image: string;
+  quantity: number;
+};

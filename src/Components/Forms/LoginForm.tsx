@@ -28,8 +28,10 @@ export const LoginForm = () => {
           if (res.status !== undefined) {
             if (typeof window !== "undefined") {
               window.localStorage.setItem("token", res.data.access_token);
-              // push("/");
+              push("/");
             }
+          } else {
+            toast.error("Wrong credentials !");
           }
         });
       } catch (e) {

@@ -3,7 +3,7 @@ import React from "react";
 
 const registerPage = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-bitcoin">
+    <main className="flex min-h-screen flex-col dark:bg-bitcoin bg-cover bg-no-repeat bg-fixed items-center justify-between p-24">
       <LoginForm />
     </main>
   );

@@ -29,7 +29,8 @@ export async function registerUser(registerProps: RegisterProps) {
     .then((res) => {
       return res;
     })
-    .catch((e) => {
+    .catch((res) => {
+      return res;
       //   throw new Error(e);
     });
 }
@@ -56,8 +57,8 @@ export async function login(loginProps: LoginProps) {
     .then((res) => {
       return res;
     })
-    .catch((res) => {
-      // throw new Error(e);
-      return res;
+    .catch((e) => {
+      return e;
+      // return res;
     });
 }
