@@ -1,12 +1,11 @@
-import { CryptoProps } from "@/Utils/types";
 import axios from "axios";
 
-export async function getAllCryptos() {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/all`;
+export async function getAllPromoCodes() {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/all`;
 
   let axiosConfig = {
     headers: {
-      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -26,38 +25,8 @@ export async function getAllCryptos() {
     });
 }
 
-export async function createCrypto(cryptoProps: CryptoProps) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/create`;
-
-  let axiosConfig = {
-    headers: {
-      "content-type": "application/json;charset=utf-8",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  };
-  return axios
-    .post(
-      url,
-      {
-        name: cryptoProps.name,
-        quantity: Number(cryptoProps.quantity),
-        value: Number(cryptoProps.value),
-        image: cryptoProps.image,
-      },
-      axiosConfig
-    )
-    .then((res) => {
-      return res;
-    })
-    .catch((e) => {
-      return e;
-    });
-}
-
-export async function buyCrypto(id: string, amount: number) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/buy`;
+export async function createPromoCode(name: string, value: number) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/create`;
 
   let axiosConfig = {
     headers: {
@@ -68,14 +37,49 @@ export async function buyCrypto(id: string, amount: number) {
     },
   };
   return axios
-    .post(
-      url,
-      {
-        id_crypto: id,
-        amount: amount,
-      },
-      axiosConfig
-    )
+    .post(url, { name: name, value: value }, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      return e;
+    });
+}
+
+export async function deletePromoCode(id: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/delete/${id}`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .delete(url, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      return e;
+    });
+}
+
+export async function updatePromoCode(id: string, name: string, value: number) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${id}`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .patch(url, { name: name, value: value }, axiosConfig)
     .then((res) => {
       return res;
     })

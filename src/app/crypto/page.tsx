@@ -1,6 +1,7 @@
 "use client";
 import CardWrapper from "@/Components/Cards/CardWrapper";
 import CryptoCard from "@/Components/Cards/CryptoCard";
+import { CryptoForm } from "@/Components/Forms/CryptoForm";
 import { getAllCryptos } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
 import { Card } from "@mui/material";
@@ -17,17 +18,14 @@ const cryptoPage = () => {
   }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between dark:bg-bitcoin bg-cover bg-no-repeat bg-fixed p-24">
+      <CryptoForm />
       <CardWrapper>
         {cryptosList &&
           cryptosList.map((crypto) => {
             return (
-              <CryptoCard
-                name={crypto.name}
-                value={crypto.value}
-                image={crypto.image}
-                id={crypto.id}
-                quantity={crypto.quantity}
-              />
+              <div key={crypto.id}>
+                <CryptoCard crypto={crypto} isBuyVisible={true} />
+              </div>
             );
           })}
       </CardWrapper>

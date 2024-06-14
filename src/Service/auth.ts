@@ -7,7 +7,8 @@ export async function registerUser(registerProps: RegisterProps) {
 
   let axiosConfig = {
     headers: {
-      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "content-type": "application/json;charset=utf-8",
+
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     },
@@ -23,14 +24,15 @@ export async function registerUser(registerProps: RegisterProps) {
         city: registerProps.city,
         password: registerProps.password,
         promoCode: registerProps.promoCode,
+        age: Number(registerProps.age),
       },
       axiosConfig
     )
     .then((res) => {
       return res;
     })
-    .catch((res) => {
-      return res;
+    .catch((e) => {
+      return e;
       //   throw new Error(e);
     });
 }

@@ -27,7 +27,8 @@ export const RegisterForm = () => {
             push("/login");
           }
         } else {
-          toast.error("Failed !");
+          toast.error(res.response.data.message);
+          console.log(res);
         }
       })
       .catch((e) => console.log(e));
@@ -71,7 +72,21 @@ export const RegisterForm = () => {
           />{" "}
           {errors.lastName && <ErrorMsg error={"last name"} />}
         </div>
-
+        <div className="flex items-start flex-col justify-start">
+          <label
+            htmlFor="age"
+            className="text-sm text-gray-700 dark:text-black mr-2"
+          >
+            Age:
+          </label>
+          <input
+            type="number"
+            id="age"
+            className="w-full px-3 dark:text-black dark:bg-white py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            {...register("age", { required: true })}
+          />{" "}
+          {errors.age && <ErrorMsg error={"age"} />}
+        </div>
         <div className="flex items-start flex-col justify-start">
           <label
             htmlFor="pseudo"
