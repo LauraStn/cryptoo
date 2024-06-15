@@ -83,3 +83,53 @@ export async function buyCrypto(id: string, amount: number) {
       return e;
     });
 }
+
+export async function searchCrypto(name: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/search/${name}`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .get(
+      url,
+
+      axiosConfig
+    )
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      return e;
+    });
+}
+
+export async function getCryptoHistory(crypto_id: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/history/${crypto_id}`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .get(
+      url,
+
+      axiosConfig
+    )
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      return e;
+    });
+}

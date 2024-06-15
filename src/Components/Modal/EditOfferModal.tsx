@@ -1,11 +1,16 @@
-import { buyOffer } from "@/Service/trade";
-import { CryptoProps, OffersProps } from "@/Utils/types";
+import { deleteOffer, updateOffer } from "@/Service/offer";
+import { OffersProps } from "@/Utils/types";
 import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { BsCart4 } from "react-icons/bs";
 
-export const BuyOfferModal = ({ offer }: { offer: OffersProps }) => {
+export const DeleteOfferModal = ({
+  offer,
+  amount,
+}: {
+  offer: OffersProps;
+  amount: number;
+}) => {
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -20,15 +25,14 @@ export const BuyOfferModal = ({ offer }: { offer: OffersProps }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  function HandleOfferBuy() {
-    buyOffer(offer.id)
+  function HandleEditOffer() {
+    updateOffer(offer.id, amount)
       .then((res) => {
         if (res.status !== undefined) {
           handleClose();
-          toast.success("Successfully buyed");
-          return;
+          toast.success("Successfully deleted");
         }
-        toast.error(res.response.data.message);
+        toast.error("error");
         handleClose();
       })
       .catch((e) => toast.error(e));
@@ -40,9 +44,20 @@ export const BuyOfferModal = ({ offer }: { offer: OffersProps }) => {
         onClick={handleOpen}
         className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
       >
-        <BsCart4 />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+          />
+        </svg>
       </button>
-
       <Modal
         open={open}
         onClose={handleClose}
@@ -50,7 +65,7 @@ export const BuyOfferModal = ({ offer }: { offer: OffersProps }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <p className="flex justify-center">Confirm buying ?</p>
+          <p className="flex justify-center">Confirm Delete this offer ?</p>
           <div className="flex items-center">
             <button
               onClick={handleClose}
@@ -61,10 +76,10 @@ export const BuyOfferModal = ({ offer }: { offer: OffersProps }) => {
             <button
               className="bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 "
               onClick={() => {
-                HandleOfferBuy();
+                HandleEditOffer();
               }}
             >
-              Buy
+              Update
             </button>
           </div>
         </Box>

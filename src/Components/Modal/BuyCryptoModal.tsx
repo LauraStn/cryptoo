@@ -3,14 +3,9 @@ import { CryptoProps } from "@/Utils/types";
 import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { BsCart4 } from "react-icons/bs";
 
-export const BuyCryptoModal = ({
-  crypto,
-  isBuyVisible,
-}: {
-  crypto: CryptoProps;
-  isBuyVisible: boolean;
-}) => {
+export const BuyCryptoModal = ({ crypto }: { crypto: CryptoProps }) => {
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -27,28 +22,27 @@ export const BuyCryptoModal = ({
   const handleClose = () => setOpen(false);
   const [amount, setAmount] = useState(1);
 
-  function HandleCrypoBuy() {
+  function HandleCryptoBuy() {
     buyCrypto(crypto.id, amount)
       .then((res) => {
         if (res.status !== undefined) {
           handleClose();
           toast.success("Successfully buyed");
+          return;
         }
-        // toast.error(res.response.data.message);
+        toast.error(res.response.data.message);
       })
       .catch((e) => toast.error(e));
   }
 
   return (
     <div>
-      {isBuyVisible && (
-        <button
-          onClick={handleOpen}
-          className="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-        >
-          Buy{" "}
-        </button>
-      )}
+      <button
+        onClick={handleOpen}
+        className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+      >
+        <BsCart4 />
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -77,7 +71,7 @@ export const BuyCryptoModal = ({
             <button
               className="bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 "
               onClick={() => {
-                HandleCrypoBuy();
+                HandleCryptoBuy();
               }}
             >
               Buy

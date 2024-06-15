@@ -17,6 +17,8 @@ export async function buyOffer(id_offer: string) {
       return res;
     })
     .catch((e) => {
+      console.log(id_offer);
+
       return e;
     });
 }
