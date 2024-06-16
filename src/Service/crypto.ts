@@ -81,6 +81,7 @@ export async function buyCrypto(id: string, amount: number) {
     })
     .catch((e) => {
       return e;
+      // throw new Error(e);
     });
 }
 
