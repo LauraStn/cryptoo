@@ -36,6 +36,7 @@ export type OffersProps = {
 export type UserHasCrypto = {
   Crypto: CryptoProps;
   amount: number;
+  id: string;
 };
 
 export type UserProps = {

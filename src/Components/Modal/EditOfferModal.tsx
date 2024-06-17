@@ -1,10 +1,11 @@
-import { deleteOffer, updateOffer } from "@/Service/offer";
+import { updateOffer } from "@/Service/offer";
 import { OffersProps } from "@/Utils/types";
 import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-export const DeleteOfferModal = ({
+export const EditOfferModal = ({
   offer,
   amount,
 }: {
@@ -24,19 +25,28 @@ export const DeleteOfferModal = ({
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<OffersProps>();
 
-  function HandleEditOffer() {
-    updateOffer(offer.id, amount)
+  const onSubmit: SubmitHandler<OffersProps> = (data) =>
+    updateOffer(offer.id, offer.Crypto.id, data.amount)
       .then((res) => {
+        console.log(offer.Crypto);
+
         if (res.status !== undefined) {
+          toast.success("Crypto Updated !");
           handleClose();
-          toast.success("Successfully deleted");
+          return;
+        } else {
+          toast.error("Failed !");
+          handleClose();
         }
-        toast.error("error");
-        handleClose();
       })
       .catch((e) => toast.error(e));
-  }
 
   return (
     <div>
@@ -54,7 +64,7 @@ export const DeleteOfferModal = ({
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
           />
         </svg>
       </button>
@@ -66,22 +76,42 @@ export const DeleteOfferModal = ({
       >
         <Box sx={style}>
           <p className="flex justify-center">Confirm Delete this offer ?</p>
-          <div className="flex items-center">
-            <button
-              onClick={handleClose}
-              className="bg-red-400 text-white rounded-md text-center w-32 p-2 m-4 "
-            >
-              Cancel
-            </button>
-            <button
-              className="bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 "
-              onClick={() => {
-                HandleEditOffer();
-              }}
-            >
-              Update
-            </button>
-          </div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full flex flex-col gap-4"
+          >
+            <div className="flex items-start flex-col justify-start">
+              <label
+                htmlFor="amount"
+                className="text-sm text-gray-700 dark:text-black mr-2"
+              >
+                Amount:
+              </label>
+              <input
+                type="number"
+                id="amount"
+                max={offer.amount}
+                className="w-full px-3 dark:text-black dark:bg-white py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                {...register("amount", {
+                  valueAsNumber: true,
+                  required: true,
+                })}
+              />{" "}
+            </div>
+            <div className="flex items-center">
+              <button
+                onClick={handleClose}
+                className="bg-red-400 text-white rounded-md text-center w-32 p-2 m-4 "
+              >
+                Cancel
+              </button>
+              <input
+                type="submit"
+                className="bg-green-700 cursor-pointer text-white rounded-md text-center w-32 p-2 m-4 "
+                value="Update"
+              />
+            </div>
+          </form>
         </Box>
       </Modal>
     </div>

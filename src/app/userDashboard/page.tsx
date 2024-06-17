@@ -1,6 +1,8 @@
 "use client";
 import { OfferTab } from "@/Components/Cards/OfferTab";
 import UserDollarsCard from "@/Components/Cards/UserDollarsCard";
+import { UserCryptoTable } from "@/Components/UserCryptoTable/UserCryptoTable";
+import { getCryptoHistory } from "@/Service/crypto";
 import { UserProps } from "@/Utils/types";
 import React, { useEffect, useState } from "react";
 
@@ -12,7 +14,8 @@ const page = (user: UserProps) => {
         pseudo={user.pseudo}
       />
       ;
-      <OfferTab
+      <UserCryptoTable />
+      {/* <OfferTab
         offer={{
           id: "",
           User: {
@@ -30,7 +33,7 @@ const page = (user: UserProps) => {
           },
         }}
         setIsReloadNeeded={undefined}
-      />
+      /> */}
     </main>
   );
 };

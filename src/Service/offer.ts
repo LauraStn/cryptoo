@@ -25,7 +25,11 @@ export async function getAllOffers() {
     });
 }
 
-export async function updateOffer(id_offer: string, amount: number) {
+export async function updateOffer(
+  id_offer: string,
+  id_crypto: string,
+  amount: number
+) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${id_offer}`;
 
   let axiosConfig = {
@@ -37,7 +41,7 @@ export async function updateOffer(id_offer: string, amount: number) {
     },
   };
   return axios
-    .patch(url, { amount: amount }, axiosConfig)
+    .patch(url, { id_crypto: id_crypto, amount: amount }, axiosConfig)
     .then((res) => {
       return res;
     })
@@ -58,7 +62,7 @@ export async function createOffer(crypto_id: string, amount: number) {
     },
   };
   return axios
-    .post(url, { crypto_id: crypto_id, amount: amount }, axiosConfig)
+    .post(url, { id_crypto: crypto_id, amount: amount }, axiosConfig)
     .then((res) => {
       return res;
     })

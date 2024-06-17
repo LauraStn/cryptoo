@@ -1,5 +1,6 @@
 import { getMyAssets } from "@/Service/user";
 import { UserProps } from "@/Utils/types";
+import { log } from "console";
 import React, { useEffect, useState } from "react";
 
 const UserDollarsCard = (user: UserProps) => {
@@ -7,6 +8,8 @@ const UserDollarsCard = (user: UserProps) => {
 
   useEffect(() => {
     getMyAssets().then((res) => {
+      console.log(res);
+
       setMyAssets(res.data);
     });
   }, []);

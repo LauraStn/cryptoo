@@ -2,6 +2,7 @@ import { OffersProps } from "@/Utils/types";
 import React from "react";
 import { BuyOfferModal } from "../Modal/BuyOfferMofal";
 import { DeleteOfferModal } from "../Modal/DeleteOfferModal";
+import { EditOfferModal } from "../Modal/EditOfferModal";
 
 const OfferRow = ({
   offer,
@@ -57,7 +58,7 @@ const OfferRow = ({
       <td className="py-3 px-6 text-center">
         <div className="flex item-center justify-center">
           <BuyOfferModal offer={offer} />
-          <button className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+          {/* <button className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -71,7 +72,9 @@ const OfferRow = ({
                 d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
               />
             </svg>
-          </button>
+            
+          </button> */}
+          <EditOfferModal offer={offer} amount={offer.amount} />
           <DeleteOfferModal offer={offer} />
         </div>
       </td>

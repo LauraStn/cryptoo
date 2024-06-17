@@ -79,7 +79,7 @@ export const OfferTable = () => {
                         created_at: "",
                         id_user: "",
                         Crypto: {
-                          id: "",
+                          id: offer.Crypto.id,
                           name: offer.Crypto.name,
                           quantity: 0,
                           value: Math.round(offer.Crypto.value * 100) / 100,
