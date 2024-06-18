@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { UserHasCrypto } from "../../Utils/types";
 import { getAllCryptos } from "@/Service/crypto";
 import { getMyAssets } from "@/Service/user";
@@ -33,7 +33,7 @@ export const UserCryptoTable = () => {
             {myAssets &&
               myAssets?.map((UserHasCrypto) => {
                 return (
-                  <>
+                  <Fragment key={UserHasCrypto.id}>
                     <UserCryptoRow
                       userHasCrypto={{
                         Crypto: {
@@ -42,12 +42,13 @@ export const UserCryptoTable = () => {
                           quantity: UserHasCrypto.Crypto.quantity,
                           value: UserHasCrypto.Crypto.value,
                           image: UserHasCrypto.Crypto.image,
+                          updated_at: UserHasCrypto.Crypto.updated_at,
                         },
                         amount: UserHasCrypto.amount,
                         id: UserHasCrypto.id,
                       }}
                     />
-                  </>
+                  </Fragment>
                 );
               })}
           </tbody>

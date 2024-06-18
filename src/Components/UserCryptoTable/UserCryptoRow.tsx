@@ -49,6 +49,7 @@ const UserCryptoRow = ({ userHasCrypto }: { userHasCrypto: UserHasCrypto }) => {
                 quantity: 0,
                 value: 0,
                 image: "",
+                updated_at: userHasCrypto.Crypto.updated_at,
               },
               amount: userHasCrypto.amount,
               id: userHasCrypto.id,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { CryptoProps, OffersProps } from "../../Utils/types";
 import { getAllOffers } from "@/Service/offer";
 import { getAllCryptos } from "@/Service/crypto";
@@ -62,9 +62,9 @@ export const CryptoTable = () => {
             {cryptosList &&
               cryptosList?.map((crypto) => {
                 return (
-                  <>
+                  <Fragment key={crypto.id}>
                     <CryptoRow crypto={crypto} />
-                  </>
+                  </Fragment>
                 );
               })}
           </tbody>

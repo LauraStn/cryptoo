@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export type RegisterProps = {
   email: string;
   firstName: string;
@@ -20,6 +22,7 @@ export type CryptoProps = {
   quantity: number;
   value: number;
   image: string;
+  updated_at: string;
 };
 
 export type OffersProps = {
@@ -43,4 +46,11 @@ export type UserProps = {
   UserHasCrypto?: UserHasCrypto;
   dollarAvailables: number;
   pseudo: string;
+};
+
+export type TradeProps = {
+  Crypto: CryptoProps;
+  Giver: UserProps;
+  Receiver: UserProps;
+  id: string;
 };

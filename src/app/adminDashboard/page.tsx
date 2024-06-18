@@ -1,5 +1,6 @@
 "use client";
 import { CreateCryptoModal } from "@/Components/Modal/CreateCryptoModal";
+import TradeTable from "@/Components/TradeTable/TradeTable";
 import { CryptoProps } from "@/Utils/types";
 import React from "react";
 import { FaBitcoin } from "react-icons/fa";
@@ -328,7 +329,9 @@ const page = (crypto: CryptoProps) => {
                   </div>
                   <div id="main-chart"></div>
                 </div>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <TradeTable />
+
+                {/* <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <div className="mb-4 flex items-center justify-between">
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -475,7 +478,7 @@ const page = (crypto: CryptoProps) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">

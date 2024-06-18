@@ -1,7 +1,8 @@
 import { updateOffer } from "@/Service/offer";
+import { getMyAssets } from "@/Service/user";
 import { OffersProps } from "@/Utils/types";
 import { Box, Modal } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -12,6 +13,11 @@ export const EditOfferModal = ({
   offer: OffersProps;
   amount: number;
 }) => {
+  useEffect(() => {
+    getMyAssets().then((res) => {
+      console.log(res.data.UserHasCrypto);
+    });
+  }, []);
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -35,7 +41,7 @@ export const EditOfferModal = ({
   const onSubmit: SubmitHandler<OffersProps> = (data) =>
     updateOffer(offer.id, offer.Crypto.id, data.amount)
       .then((res) => {
-        console.log(offer.Crypto);
+        console.log(offer);
 
         if (res.status !== undefined) {
           toast.success("Crypto Updated !");
@@ -75,7 +81,7 @@ export const EditOfferModal = ({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <p className="flex justify-center">Confirm Delete this offer ?</p>
+          <p className="flex justify-center">Update this offer</p>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full flex flex-col gap-4"
@@ -90,7 +96,7 @@ export const EditOfferModal = ({
               <input
                 type="number"
                 id="amount"
-                max={offer.amount}
+                // max={offer.amount}
                 className="w-full px-3 dark:text-black dark:bg-white py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 {...register("amount", {
                   valueAsNumber: true,
