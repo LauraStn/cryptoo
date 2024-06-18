@@ -2,7 +2,6 @@ import React from "react";
 import { OffersProps } from "../../Utils/types";
 import { deleteOffer } from "@/Service/offer";
 import toast from "react-hot-toast";
-import CryptoCard from "./CryptoCard";
 import { buyOffer } from "@/Service/trade";
 import { BsCart4 } from "react-icons/bs";
 

@@ -1,6 +1,5 @@
 "use client";
 import CardWrapper from "@/Components/Cards/CardWrapper";
-import CryptoCard from "@/Components/Cards/CryptoCard";
 import { CryptoTable } from "@/Components/CryptoTable/CryptoTable";
 import { CryptoForm } from "@/Components/Forms/CryptoForm";
 import { CreateCryptoModal } from "@/Components/Modal/CreateCryptoModal";
@@ -24,10 +23,10 @@ const cryptoPage = (crypto: CryptoProps) => {
   return (
     <main className="flex gap-4 min-h-screen flex-col items-center justify-between dark:bg-bitcoin bg-cover bg-no-repeat bg-fixed p-24">
       {/* <CryptoForm /> */}
-      {/* <div className="bg-white">
+      <div className="bg-white">
         Create a new Crypto
         <CreateCryptoModal crypto={crypto} />
-      </div> */}
+      </div>
       <CryptoTable />
       {/* <CardWrapper>
         {cryptosList &&

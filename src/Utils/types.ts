@@ -54,3 +54,9 @@ export type TradeProps = {
   Receiver: UserProps;
   id: string;
 };
+
+export type PromoCodeProps = {
+  id: string;
+  name: string;
+  value: number;
+};

@@ -26,7 +26,7 @@ export async function getAllPromoCodes() {
 }
 
 export async function createPromoCode(name: string, value: number) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/create`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/create`;
 
   let axiosConfig = {
     headers: {
@@ -47,7 +47,7 @@ export async function createPromoCode(name: string, value: number) {
 }
 
 export async function deletePromoCode(id: string) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/delete/${id}`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/delete/${id}`;
 
   let axiosConfig = {
     headers: {
@@ -68,7 +68,7 @@ export async function deletePromoCode(id: string) {
 }
 
 export async function updatePromoCode(id: string, name: string, value: number) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${id}`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/update/${id}`;
 
   let axiosConfig = {
     headers: {

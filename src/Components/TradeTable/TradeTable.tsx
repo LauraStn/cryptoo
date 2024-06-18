@@ -8,8 +8,6 @@ const TradeTable = () => {
 
   useEffect(() => {
     getAllTrades().then((res) => {
-      console.log(res.data);
-
       setallTrades(res.data);
     });
   }, []);
@@ -62,7 +60,7 @@ const TradeTable = () => {
                 </thead>
                 <tbody className="bg-white">
                   {allTrades &&
-                    allTrades?.map((trade) => {
+                    allTrades.slice(0, 11).map((trade) => {
                       return (
                         <Fragment key={trade.id}>
                           <TradeRow

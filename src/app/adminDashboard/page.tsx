@@ -1,22 +1,18 @@
 "use client";
+import AdminCodeTable from "@/Components/AdminPromoCode/AdminCodeTable";
 import { CreateCryptoModal } from "@/Components/Modal/CreateCryptoModal";
 import TradeTable from "@/Components/TradeTable/TradeTable";
-import { CryptoProps } from "@/Utils/types";
+import UserTable from "@/Components/UserTable/UserTable";
+import { CryptoProps, PromoCodeProps } from "@/Utils/types";
 import React from "react";
-import { FaBitcoin } from "react-icons/fa";
-import { MdAdd } from "react-icons/md";
-import { RiAddLargeFill } from "react-icons/ri";
 
-const page = (crypto: CryptoProps) => {
+const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
   return (
     <div>
       <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-end">
             <div className="flex items-center ">
-              {/* <button className="flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center gap-3 justify-around items-center mr-3">
-                <FaBitcoin /> Create a crypto <MdAdd />
-              </button> */}
               <CreateCryptoModal crypto={crypto} />
             </div>
           </div>
@@ -132,9 +128,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                       <span className="ml-3 flex-1 whitespace-nowrap">
@@ -154,9 +150,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                       <span className="ml-3 flex-1 whitespace-nowrap">
@@ -176,9 +172,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                       <span className="ml-3 flex-1 whitespace-nowrap">
@@ -198,9 +194,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                       <span className="ml-3 flex-1 whitespace-nowrap">
@@ -244,9 +240,9 @@ const page = (crypto: CryptoProps) => {
                     >
                       <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                     <span className="ml-3">Documentation</span>
@@ -278,9 +274,9 @@ const page = (crypto: CryptoProps) => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                     <span className="ml-3">Help</span>
@@ -320,9 +316,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
@@ -330,155 +326,6 @@ const page = (crypto: CryptoProps) => {
                   <div id="main-chart"></div>
                 </div>
                 <TradeTable />
-
-                {/* <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <div className="mb-4 flex items-center justify-between">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        Latest Transactions
-                      </h3>
-                      <span className="text-base font-normal text-gray-500">
-                        This is a list of latest transactions
-                      </span>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <a
-                        href="#"
-                        className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
-                      >
-                        View all
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex flex-col mt-8">
-                    <div className="overflow-x-auto rounded-lg">
-                      <div className="align-middle inline-block min-w-full">
-                        <div className="shadow overflow-hidden sm:rounded-lg">
-                          <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
-                              <tr>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Transaction
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Date & Time
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Amount
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="bg-white">
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Bonnie Green
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment refund to{" "}
-                                  <span className="font-semibold">#00910</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  -$670
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment failed from{" "}
-                                  <span className="font-semibold">#087651</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 18 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $234
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Byrd
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $5000
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Jese Leos
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    THEMESBERG LLC
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 11 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $560
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Lysle
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 6 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $1437
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               </div>
               <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
@@ -500,9 +347,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
@@ -527,9 +374,9 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
@@ -554,173 +401,18 @@ const page = (crypto: CryptoProps) => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
-                <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold leading-none text-gray-900">
-                      Latest Customers
-                    </h3>
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-                    >
-                      View all
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <ul role="list" className="divide-y divide-gray-200">
-                      <li className="py-3 sm:py-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src="https://demo.themesberg.com/windster/images/users/neil-sims.png"
-                              alt="Neil image"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
-                              Neil Sims
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              <a
-                                href="/cdn-cgi/l/email-protection"
-                                className="__cf_email__"
-                                data-cfemail="17727a767e7b57607e7973646372653974787a"
-                              >
-                                [email&#160;protected]
-                              </a>
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                            $320
-                          </div>
-                        </div>
-                      </li>
-                      <li className="py-3 sm:py-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src="https://demo.themesberg.com/windster/images/users/bonnie-green.png"
-                              alt="Neil image"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
-                              Bonnie Green
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              <a
-                                href="/cdn-cgi/l/email-protection"
-                                className="__cf_email__"
-                                data-cfemail="d4b1b9b5bdb894a3bdbab0a7a0b1a6fab7bbb9"
-                              >
-                                [email&#160;protected]
-                              </a>
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                            $3467
-                          </div>
-                        </div>
-                      </li>
-                      <li className="py-3 sm:py-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src="https://demo.themesberg.com/windster/images/users/michael-gough.png"
-                              alt="Neil image"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
-                              Michael Gough
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              <a
-                                href="/cdn-cgi/l/email-protection"
-                                className="__cf_email__"
-                                data-cfemail="57323a363e3b17203e3933242332257934383a"
-                              >
-                                [email&#160;protected]
-                              </a>
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                            $67
-                          </div>
-                        </div>
-                      </li>
-                      <li className="py-3 sm:py-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src="https://demo.themesberg.com/windster/images/users/thomas-lean.png"
-                              alt="Neil image"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
-                              Thomes Lean
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              <a
-                                href="/cdn-cgi/l/email-protection"
-                                className="__cf_email__"
-                                data-cfemail="284d45494144685f41464c5b5c4d5a064b4745"
-                              >
-                                [email&#160;protected]
-                              </a>
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                            $2367
-                          </div>
-                        </div>
-                      </li>
-                      <li className="pt-3 sm:pt-4 pb-0">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src="https://demo.themesberg.com/windster/images/users/lana-byrd.png"
-                              alt="Neil image"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
-                              Lana Byrd
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              <a
-                                href="/cdn-cgi/l/email-protection"
-                                className="__cf_email__"
-                                data-cfemail="a2c7cfc3cbcee2d5cbccc6d1d6c7d08cc1cdcf"
-                              >
-                                [email&#160;protected]
-                              </a>
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                            $367
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+              <UserTable />
+              <AdminCodeTable promoCode={promoCode} />
+              {/* <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <h3 className="text-xl leading-none font-bold text-gray-900 mb-10">
                     Acquisition Overview
@@ -863,7 +555,7 @@ const page = (crypto: CryptoProps) => {
                     </table>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </main>
           <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
@@ -918,9 +610,9 @@ const page = (crypto: CryptoProps) => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </a>
@@ -932,9 +624,9 @@ const page = (crypto: CryptoProps) => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </a>
@@ -956,9 +648,9 @@ const page = (crypto: CryptoProps) => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </a>

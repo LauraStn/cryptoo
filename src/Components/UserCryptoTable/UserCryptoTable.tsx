@@ -9,8 +9,6 @@ export const UserCryptoTable = () => {
 
   useEffect(() => {
     getMyAssets().then((res) => {
-      console.log(res.data.UserHasCrypto);
-
       setMyAssets(res.data.UserHasCrypto);
     });
   }, []);
@@ -25,7 +23,6 @@ export const UserCryptoTable = () => {
               <th className="py-3 px-6 text-left">Value</th>
               <th className="py-3 px-6 text-left">Server Quantity</th>
               <th className="py-3 px-6 text-center">Amount</th>
-              {/* <th className="py-3 px-6 text-center">Total</th> */}
               <th className="py-3 px-6 text-center">Sell</th>
             </tr>
           </thead>

@@ -15,7 +15,6 @@ export const OfferTable = () => {
       })
       .catch((e) => {
         setIsReloadNeeded(false);
-        console.log(e);
       });
   }, [isReloadNeeded]);
 
@@ -84,6 +83,7 @@ export const OfferTable = () => {
                           quantity: 0,
                           value: Math.round(offer.Crypto.value * 100) / 100,
                           image: offer.Crypto.image,
+                          updated_at: "",
                         },
                       }}
                       setIsReloadNeeded={setIsReloadNeeded}
