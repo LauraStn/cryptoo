@@ -3,6 +3,7 @@ import React from "react";
 import { BuyOfferModal } from "../Modal/BuyOfferMofal";
 import { DeleteOfferModal } from "../Modal/DeleteOfferModal";
 import { BuyCryptoModal } from "../Modal/BuyCryptoModal";
+import { USDollar } from "@/Utils/currencyFormat";
 
 const CryptoRow = ({ crypto }: { crypto: CryptoProps }) => {
   return (
@@ -19,7 +20,7 @@ const CryptoRow = ({ crypto }: { crypto: CryptoProps }) => {
         <div className="flex items-center">
           <span className="font-medium">
             {" "}
-            {Math.round(crypto.value * 100) / 100}{" "}
+            {USDollar.format(Math.round(crypto.value * 100) / 100)}
           </span>
         </div>
       </td>
@@ -28,21 +29,9 @@ const CryptoRow = ({ crypto }: { crypto: CryptoProps }) => {
           <span> {crypto.quantity} </span>
         </div>
       </td>
-      {/* <td className="py-3 px-6 text-center">
-        <div className="flex items-center justify-center">
-          <span> {offer.amount} </span>
-        </div>
-      </td> */}
-      {/* <td className="py-3 px-6 text-center">
-        <span className="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
-          {Math.round(offer.amount * offer.Crypto.value * 100) / 100} $
-        </span>
-      </td> */}
       <td className="py-3 px-6 text-center">
         <div className="flex item-center justify-center">
-          {/* <BuyOfferModal offer={offer} /> */}
           <BuyCryptoModal crypto={crypto} />
-          {/* <DeleteOfferModal offer={offer} /> */}
         </div>
       </td>
     </tr>

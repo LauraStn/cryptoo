@@ -1,6 +1,9 @@
 import { UserHasCrypto } from "@/Utils/types";
 import React from "react";
 import { CreateOfferModal } from "../Modal/CreateOfferModal";
+import { FaDonate } from "react-icons/fa";
+import { SellCryptoModal } from "../Modal/SellCryptoModal";
+import { USDollar } from "@/Utils/currencyFormat";
 
 const UserCryptoRow = ({ userHasCrypto }: { userHasCrypto: UserHasCrypto }) => {
   return (
@@ -20,7 +23,9 @@ const UserCryptoRow = ({ userHasCrypto }: { userHasCrypto: UserHasCrypto }) => {
         <div className="flex items-center">
           <span className="font-medium">
             {" "}
-            {Math.round(userHasCrypto.Crypto.value * 100) / 100}{" "}
+            {USDollar.format(
+              Math.round(userHasCrypto.Crypto.value * 100) / 100
+            )}
           </span>
         </div>
       </td>
@@ -55,6 +60,7 @@ const UserCryptoRow = ({ userHasCrypto }: { userHasCrypto: UserHasCrypto }) => {
               id: userHasCrypto.id,
             }}
           />
+          <SellCryptoModal userHasCrypto={userHasCrypto} />
         </div>
       </td>
     </tr>

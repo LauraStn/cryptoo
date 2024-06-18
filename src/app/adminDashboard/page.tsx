@@ -5,6 +5,9 @@ import TradeTable from "@/Components/TradeTable/TradeTable";
 import UserTable from "@/Components/UserTable/UserTable";
 import { CryptoProps, PromoCodeProps } from "@/Utils/types";
 import React from "react";
+import { FaBitcoin } from "react-icons/fa";
+import { MdAdd } from "react-icons/md";
+import { RiAddLargeFill } from "react-icons/ri";
 
 const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
   return (
@@ -13,6 +16,9 @@ const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-end">
             <div className="flex items-center ">
+              {/* <button className="flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center gap-3 justify-around items-center mr-3">
+                <FaBitcoin /> Create a crypto <MdAdd />
+              </button> */}
               <CreateCryptoModal crypto={crypto} />
             </div>
           </div>
@@ -326,6 +332,8 @@ const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
                   <div id="main-chart"></div>
                 </div>
                 <TradeTable />
+                <UserTable />
+                <AdminCodeTable promoCode={promoCode} />
               </div>
               <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
@@ -410,152 +418,6 @@ const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
                   </div>
                 </div>
               </div>
-              <UserTable />
-              <AdminCodeTable promoCode={promoCode} />
-              {/* <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <h3 className="text-xl leading-none font-bold text-gray-900 mb-10">
-                    Acquisition Overview
-                  </h3>
-                  <div className="block w-full overflow-x-auto">
-                    <table className="items-center w-full bg-transparent border-collapse">
-                      <thead>
-                        <tr>
-                          <th className="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                            Top Channels
-                          </th>
-                          <th className="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                            Users
-                          </th>
-                          <th className="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px"></th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100">
-                        <tr className="text-gray-500">
-                          <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                            Organic Search
-                          </th>
-                          <td className="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                            5,649
-                          </td>
-                          <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                            <div className="flex items-center">
-                              <span className="mr-2 text-xs font-medium">
-                                30%
-                              </span>
-                              <div className="relative w-full">
-                                <div className="w-full bg-gray-200 rounded-sm h-2">
-                                  <div className="bg-cyan-600 h-2 rounded-sm width=[30%]"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr className="text-gray-500">
-                          <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                            Referral
-                          </th>
-                          <td className="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                            4,025
-                          </td>
-                          <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                            <div className="flex items-center">
-                              <span className="mr-2 text-xs font-medium">
-                                24%
-                              </span>
-                              <div className="relative w-full">
-                                <div className="w-full bg-gray-200 rounded-sm h-2">
-                                  <div className="bg-orange-300 h-2 rounded-sm width=[24%]"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr className="text-gray-500">
-                          <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                            Direct
-                          </th>
-                          <td className="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                            3,105
-                          </td>
-                          <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                            <div className="flex items-center">
-                              <span className="mr-2 text-xs font-medium">
-                                18%
-                              </span>
-                              <div className="relative w-full">
-                                <div className="w-full bg-gray-200 rounded-sm h-2">
-                                  <div className="bg-teal-400 h-2 rounded-sm width=[18%]"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr className="text-gray-500">
-                          <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                            Social
-                          </th>
-                          <td className="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                            1251
-                          </td>
-                          <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                            <div className="flex items-center">
-                              <span className="mr-2 text-xs font-medium">
-                                12%
-                              </span>
-                              <div className="relative w-full">
-                                <div className="w-full bg-gray-200 rounded-sm h-2">
-                                  <div className="bg-pink-600 h-2 rounded-sm width=[12%]"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr className="text-gray-500">
-                          <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                            Other
-                          </th>
-                          <td className="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                            734
-                          </td>
-                          <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                            <div className="flex items-center">
-                              <span className="mr-2 text-xs font-medium">
-                                9%
-                              </span>
-                              <div className="relative w-full">
-                                <div className="w-full bg-gray-200 rounded-sm h-2">
-                                  <div className="bg-indigo-600 h-2 rounded-sm width=[9%]"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr className="text-gray-500">
-                          <th className="border-t-0 align-middle text-sm font-normal whitespace-nowrap p-4 pb-0 text-left">
-                            Email
-                          </th>
-                          <td className="border-t-0 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4 pb-0">
-                            456
-                          </td>
-                          <td className="border-t-0 align-middle text-xs whitespace-nowrap p-4 pb-0">
-                            <div className="flex items-center">
-                              <span className="mr-2 text-xs font-medium">
-                                7%
-                              </span>
-                              <div className="relative w-full">
-                                <div className="w-full bg-gray-200 rounded-sm h-2">
-                                  <div className="bg-purple-500 h-2 rounded-sm width=[7%]"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </main>
           <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">

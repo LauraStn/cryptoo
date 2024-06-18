@@ -4,8 +4,12 @@ import { getAllUsers } from "@/Service/user";
 
 const UserTable = () => {
   const [allUsers, setAllUsers] = useState<UserAssetsProps[]>();
+
+  let randomNumber = Math.floor(Math.random() * 1000 + 1);
   useEffect(() => {
     getAllUsers().then((res) => {
+      console.log(res.data);
+
       setAllUsers(res.data);
     });
   }, []);
@@ -27,7 +31,7 @@ const UserTable = () => {
         <div className="flow-root">
           <ul role="list" className="divide-y divide-gray-200">
             {allUsers &&
-              allUsers.slice(0, 7).map((user) => {
+              allUsers.slice(0, 5).map((user) => {
                 return (
                   <Fragment key={user.pseudo}>
                     <UserRow

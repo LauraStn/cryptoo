@@ -1,3 +1,4 @@
+import { USDollar } from "@/Utils/currencyFormat";
 import { UserHasCrypto } from "@/Utils/types";
 import React from "react";
 
@@ -21,7 +22,7 @@ const UserRow = (user: UserAssetsProps) => {
           </p>
         </div>
         <div className="inline-flex items-center text-base font-semibold text-gray-900">
-          {user.dollarAvailables}$
+          {USDollar.format(Math.round(user.dollarAvailables * 100) / 100)}
         </div>
       </div>
     </li>

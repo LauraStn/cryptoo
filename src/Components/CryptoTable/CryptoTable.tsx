@@ -13,37 +13,6 @@ export const CryptoTable = () => {
     });
   }, []);
 
-  //   function handleCryptoBuyViaOffer(offerId: string) {
-  //     buyOffer(offerId)
-  //       .then((res) => {
-  //         if (res.status !== undefined) {
-  //           setIsReloadNeeded(true);
-  //           toast.success("Success");
-  //         }
-  //         toast.error(res.response.data.message);
-  //       })
-  //       .catch((e) => {
-  //         toast.error("error");
-  //         console.log(e);
-  //       });
-  //   }
-  //   function handleDeleteOffer(offerId: string) {
-  //     deleteOffer(offerId)
-  //       .then((res) => {
-  //         console.log(offerId);
-
-  //         if (res.status !== undefined) {
-  //           setIsReloadNeeded(true);
-  //           toast.success("Success");
-  //           return;
-  //         }
-  //         toast.error("Fail");
-  //       })
-  //       .catch((e) => {
-  //         toast.error("error");
-  //         console.log(e);
-  //       });
-  //   }
   return (
     <div className="w-4/6">
       <div className="bg-white shadow-md rounded">
@@ -53,8 +22,6 @@ export const CryptoTable = () => {
               <th className="py-3 px-6 text-left">Crypto</th>
               <th className="py-3 px-6 text-left">Value</th>
               <th className="py-3 px-6 text-left">Server Quantity</th>
-              {/* <th className="py-3 px-6 text-center">Quantity</th>
-              <th className="py-3 px-6 text-center">Total</th> */}
               <th className="py-3 px-6 text-center"> Buy</th>
             </tr>
           </thead>
