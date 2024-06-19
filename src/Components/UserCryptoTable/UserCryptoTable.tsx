@@ -14,7 +14,7 @@ export const UserCryptoTable = () => {
   }, []);
 
   return (
-    <div className="w-4/6">
+    <div className="w-full mx-auto">
       <div className="bg-white shadow-md rounded">
         <table className="min-w-max w-full table-auto">
           <thead>

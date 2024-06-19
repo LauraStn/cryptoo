@@ -1,14 +1,15 @@
 import { getAllTrades } from "@/Service/trade";
 import React, { Fragment, useEffect, useState } from "react";
-import TradeRow from "./TradeRow";
 import { TradeProps } from "@/Utils/types";
+import { getMyTrades } from "@/Service/user";
+import UserTradesRow from "./UserTradesRow";
 
-const TradeTable = () => {
-  const [allTrades, setallTrades] = useState<TradeProps[]>();
+const UserTradesTable = () => {
+  const [userTrades, setUserTrades] = useState<TradeProps[]>();
 
   useEffect(() => {
-    getAllTrades().then((res) => {
-      setallTrades(res.data);
+    getMyTrades().then((res) => {
+      setUserTrades(res.data);
     });
   }, []);
   return (
@@ -59,38 +60,44 @@ const TradeTable = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white">
-                  {allTrades &&
-                    allTrades.slice(0, 11).map((trade) => {
-                      return (
-                        <Fragment key={trade.id}>
-                          <TradeRow
-                            trade={{
-                              Crypto: {
+                  {userTrades &&
+                    userTrades
+                      .sort((a: any, b: any) => {
+                        const dateA = new Date(a.Crypto.updated_at);
+                        const dateB = new Date(b.Crypto.updated_at);
+                        return dateB.getTime() - dateA.getTime();
+                      })
+                      .map((trade) => {
+                        return (
+                          <Fragment key={trade.id}>
+                            <UserTradesRow
+                              trade={{
+                                Crypto: {
+                                  id: "",
+                                  name: trade.Crypto.name,
+                                  quantity: 0,
+                                  value: 0,
+                                  image: "",
+                                  updated_at: new Date(
+                                    trade.Crypto.updated_at
+                                  ).toLocaleString("fr-FR"),
+                                },
+                                Giver: {
+                                  UserHasCrypto: undefined,
+                                  dollarAvailables: 0,
+                                  pseudo: trade.Giver.pseudo,
+                                },
+                                Receiver: {
+                                  UserHasCrypto: undefined,
+                                  dollarAvailables: 0,
+                                  pseudo: trade.Receiver.pseudo,
+                                },
                                 id: "",
-                                name: trade.Crypto.name,
-                                quantity: 0,
-                                value: 0,
-                                image: "",
-                                updated_at: new Date(
-                                  trade.Crypto.updated_at
-                                ).toLocaleString("fr-FR"),
-                              },
-                              Giver: {
-                                UserHasCrypto: undefined,
-                                dollarAvailables: 0,
-                                pseudo: trade.Giver.pseudo,
-                              },
-                              Receiver: {
-                                UserHasCrypto: undefined,
-                                dollarAvailables: 0,
-                                pseudo: trade.Receiver.pseudo,
-                              },
-                              id: "",
-                            }}
-                          />
-                        </Fragment>
-                      );
-                    })}
+                              }}
+                            />
+                          </Fragment>
+                        );
+                      })}
                 </tbody>
               </table>
             </div>
@@ -101,4 +108,4 @@ const TradeTable = () => {
   );
 };
 
-export default TradeTable;
+export default UserTradesTable;

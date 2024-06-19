@@ -14,7 +14,7 @@ export const CryptoTable = () => {
   }, []);
 
   return (
-    <div className="w-4/6">
+    <div className="w-full m-auto sm:max-w-screen-sm">
       <div className="bg-white shadow-md rounded">
         <table className="min-w-max w-full table-auto">
           <thead>
@@ -22,7 +22,7 @@ export const CryptoTable = () => {
               <th className="py-3 px-6 text-left">Crypto</th>
               <th className="py-3 px-6 text-left">Value</th>
               <th className="py-3 px-6 text-left">Server Quantity</th>
-              <th className="py-3 px-6 text-center"> Buy</th>
+              <th className="py-3 px-6 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">

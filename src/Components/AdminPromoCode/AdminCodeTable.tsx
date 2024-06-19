@@ -20,9 +20,6 @@ const AdminCodeTable = ({ promoCode }: { promoCode: PromoCodeProps }) => {
           All Promo Code
         </h3>
         <CreateCodeModal promoCode={promoCode} />
-        {/* <button className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
-          Add <MdAdd />
-        </button> */}
       </div>
       <div className="block w-full overflow-x-auto">
         <table className="items-center w-full bg-transparent border-collapse">

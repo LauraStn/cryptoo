@@ -1,6 +1,6 @@
 import { createCrypto } from "@/Service/crypto";
 import { CryptoProps, UserHasCrypto } from "@/Utils/types";
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Tooltip } from "@mui/material";
 import { register } from "module";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -52,12 +52,14 @@ export const CreateOfferModal = ({
 
   return (
     <div>
-      <button
-        onClick={handleOpen}
-        className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-      >
-        <FaBitcoin />
-      </button>
+      <Tooltip title="Create an offer">
+        <button
+          onClick={handleOpen}
+          className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+        >
+          <FaBitcoin />
+        </button>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}
@@ -71,8 +73,8 @@ export const CreateOfferModal = ({
               className="w-full flex flex-col gap-4"
             >
               {" "}
-              <h1 className="text-xl font-bold text-center text-gray-700 dark:text-black 0 mb-8">
-                Sell your crypto
+              <h1 className="text-xl font-bold text-center text-gray-700 dark:text-black">
+                Create an offer
               </h1>
               <div className="flex items-start flex-col justify-start">
                 <label

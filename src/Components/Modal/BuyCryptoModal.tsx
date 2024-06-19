@@ -1,6 +1,6 @@
 import { buyCrypto } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { BsCart4 } from "react-icons/bs";
@@ -37,12 +37,14 @@ export const BuyCryptoModal = ({ crypto }: { crypto: CryptoProps }) => {
 
   return (
     <div>
-      <button
-        onClick={handleOpen}
-        className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-      >
-        <BsCart4 />
-      </button>
+      <Tooltip title="Buy">
+        <button
+          onClick={handleOpen}
+          className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+        >
+          <BsCart4 />
+        </button>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}
