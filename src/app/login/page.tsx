@@ -1,4 +1,5 @@
 import { LoginForm } from "@/Components/Forms/LoginForm";
+import { AuthProvider } from "@/context/authcontext";
 import React from "react";
 
 const registerPage = () => {

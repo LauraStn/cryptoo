@@ -1,12 +1,8 @@
 "use client";
-import CardWrapper from "@/Components/Cards/CardWrapper";
 import { CryptoTable } from "@/Components/CryptoTable/CryptoTable";
-import { CryptoForm } from "@/Components/Forms/CryptoForm";
-import { CreateCryptoModal } from "@/Components/Modal/CreateCryptoModal";
-import { getAllCryptos, getCryptoHistory } from "@/Service/crypto";
 import { CryptoProps } from "@/Utils/types";
-import { Card } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { AuthProvider } from "@/context/authcontext";
+import React from "react";
 
 const cryptoPage = (crypto: CryptoProps) => {
   return (

@@ -21,8 +21,6 @@ export const CryptoForm = () => {
   const onSubmit: SubmitHandler<CryptoProps> = (data) =>
     createCrypto(data)
       .then((res) => {
-        console.log(res, data);
-
         //   if (res.status !== undefined) {
         //     if (typeof window !== "undefined") {
         //       window.localStorage.setItem("token", res.data.access_token);
@@ -32,7 +30,7 @@ export const CryptoForm = () => {
         //     toast.error("Failed !");
         //   }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => toast.error(e));
   return (
     <div className="max-w-lg mx-auto bg-white dark:bg-white  rounded-lg shadow-md px-8 py-10 flex flex-col items-center">
       <h1 className="text-xl font-bold text-center text-gray-700 dark:text-black 0 mb-8">

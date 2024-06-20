@@ -4,6 +4,7 @@ import { Box, Modal, Tooltip } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { ErrorMsg } from "../Error/Error";
 
 export const EditCodeModal = ({ promoCode }: { promoCode: PromoCodeProps }) => {
   const style = {
@@ -32,9 +33,10 @@ export const EditCodeModal = ({ promoCode }: { promoCode: PromoCodeProps }) => {
         if (res.status !== undefined) {
           toast.success("Code Updated !");
           handleClose();
+          window.location.reload();
           return;
         } else {
-          toast.error("Failed !");
+          toast.error(res.response.data.message);
           handleClose();
         }
       })
@@ -90,6 +92,7 @@ export const EditCodeModal = ({ promoCode }: { promoCode: PromoCodeProps }) => {
                   required: true,
                 })}
               />{" "}
+              {errors.value && <ErrorMsg error={"value"} />}
             </div>
             <div className="flex items-start flex-col justify-start">
               <label
@@ -105,6 +108,7 @@ export const EditCodeModal = ({ promoCode }: { promoCode: PromoCodeProps }) => {
                 className="w-full px-3 dark:text-black dark:bg-white py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 {...register("name", { required: true })}
               />
+              {errors.name && <ErrorMsg error={"name"} />}
             </div>
             <div className="flex items-center">
               <button

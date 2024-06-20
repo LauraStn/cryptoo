@@ -4,6 +4,8 @@ import { BuyOfferModal } from "../Modal/BuyOfferMofal";
 import { DeleteOfferModal } from "../Modal/DeleteOfferModal";
 import { EditOfferModal } from "../Modal/EditOfferModal";
 import { USDollar } from "@/Utils/currencyFormat";
+import { isAdmin } from "@/Utils/isAdmin";
+import { Span } from "next/dist/trace";
 
 const OfferRow = ({
   offer,
@@ -12,6 +14,8 @@ const OfferRow = ({
   offer: OffersProps;
   setIsReloadNeeded: any;
 }) => {
+  const role = isAdmin();
+  isAdmin();
   return (
     <tr className="border-b border-gray-200 bg-white hover:bg-gray-100">
       <td className="py-3 px-6 text-left whitespace-nowrap">
@@ -48,11 +52,17 @@ const OfferRow = ({
         </span>
       </td>
       <td className="py-3 px-6 text-center">
-        <div className="flex item-center justify-center">
-          <BuyOfferModal offer={offer} />
-          <EditOfferModal offer={offer} amount={offer.amount} />
-          <DeleteOfferModal offer={offer} />
-        </div>
+        {role ? (
+          <div className="flex item-center justify-center">
+            <BuyOfferModal offer={offer} />
+            <EditOfferModal offer={offer} amount={offer.amount} />
+            <DeleteOfferModal offer={offer} />
+          </div>
+        ) : (
+          <div className="flex item-center justify-center">
+            <BuyOfferModal offer={offer} />
+          </div>
+        )}
       </td>
     </tr>
   );

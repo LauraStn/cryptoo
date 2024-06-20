@@ -26,6 +26,8 @@ export const BuyOfferModal = ({ offer }: { offer: OffersProps }) => {
         if (res.status !== undefined) {
           handleClose();
           toast.success("Successfully buyed");
+          window.location.reload();
+
           return;
         }
         toast.error(res.response.data.message);

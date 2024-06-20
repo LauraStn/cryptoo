@@ -11,7 +11,7 @@ export const LoginForm = () => {
   const [error, setError] = useState("");
   const { push } = useRouter();
 
-  function handleSubmit() {
+  async function handleSubmit() {
     setError("");
 
     if (!email || !password) {
@@ -21,24 +21,35 @@ export const LoginForm = () => {
         email: email,
         password: password,
       };
-      try {
-        login(loginData).then((res: any) => {
-          console.log(res);
 
-          if (res.status !== undefined) {
-            if (typeof window !== "undefined") {
-              window.localStorage.setItem("token", res.data.access_token);
-              push("/");
-            }
-          } else {
-            toast.error("Wrong credentials !");
-          }
-        });
-      } catch (e) {
-        console.log("error", e);
-
-        setError("Credentials taken");
+      const logged = await login(loginData);
+      if (logged.status !== undefined) {
+        if (typeof window !== "undefined") {
+          window.localStorage.setItem("role", logged.data.user.Role.name);
+          window.localStorage.setItem("token", logged.data.access_token);
+          push("/crypto");
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      } else {
+        toast.error("Wrong credentials !");
       }
+
+      // try {
+      //   login(loginData).then((res: any) => {
+      //     if (res.status !== undefined) {
+      //       if (typeof window !== "undefined") {
+      //         window.localStorage.setItem("token", res.data.access_token);
+      //         push("/crypto");
+      //       }
+      //     } else {
+      //       toast.error("Wrong credentials !");
+      //     }
+      //   });
+      // } catch (e) {
+      //   setError("Credentials taken");
+      // }
     }
   }
 

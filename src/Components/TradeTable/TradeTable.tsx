@@ -1,9 +1,19 @@
+"use client";
 import { getAllTrades } from "@/Service/trade";
 import React, { Fragment, useEffect, useState } from "react";
 import TradeRow from "./TradeRow";
 import { TradeProps } from "@/Utils/types";
+import Link from "next/link";
 
-const TradeTable = () => {
+const TradeTable = ({
+  min,
+  max,
+  isVisible,
+}: {
+  min: number;
+  max: number;
+  isVisible: boolean;
+}) => {
   const [allTrades, setallTrades] = useState<TradeProps[]>();
 
   useEffect(() => {
@@ -12,7 +22,7 @@ const TradeTable = () => {
     });
   }, []);
   return (
-    <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+    <div className="bg-white shadow rounded-lg p-4 mb-4 sm:p-6 xl:p-8 ">
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -23,12 +33,14 @@ const TradeTable = () => {
           </span>
         </div>
         <div className="flex-shrink-0">
-          <a
-            href="#"
-            className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
-          >
-            View all
-          </a>
+          {isVisible && (
+            <Link
+              href="/allTrades"
+              className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
+            >
+              View all
+            </Link>
+          )}
         </div>
       </div>
       <div className="flex flex-col mt-8">
@@ -60,37 +72,44 @@ const TradeTable = () => {
                 </thead>
                 <tbody className="bg-white">
                   {allTrades &&
-                    allTrades.slice(0, 11).map((trade) => {
-                      return (
-                        <Fragment key={trade.id}>
-                          <TradeRow
-                            trade={{
-                              Crypto: {
+                    allTrades
+                      .sort((a: any, b: any) => {
+                        const dateA = new Date(a.Crypto.updated_at);
+                        const dateB = new Date(b.Crypto.updated_at);
+                        return dateB.getTime() - dateA.getTime();
+                      })
+                      .slice(min, max)
+                      .map((trade) => {
+                        return (
+                          <Fragment key={trade.id}>
+                            <TradeRow
+                              trade={{
+                                Crypto: {
+                                  id: "",
+                                  name: trade.Crypto.name,
+                                  quantity: 0,
+                                  value: 0,
+                                  image: "",
+                                  updated_at: new Date(
+                                    trade.Crypto.updated_at
+                                  ).toLocaleString("fr-FR"),
+                                },
+                                Giver: {
+                                  UserHasCrypto: undefined,
+                                  dollarAvailables: 0,
+                                  pseudo: trade.Giver.pseudo,
+                                },
+                                Receiver: {
+                                  UserHasCrypto: undefined,
+                                  dollarAvailables: 0,
+                                  pseudo: trade.Receiver.pseudo,
+                                },
                                 id: "",
-                                name: trade.Crypto.name,
-                                quantity: 0,
-                                value: 0,
-                                image: "",
-                                updated_at: new Date(
-                                  trade.Crypto.updated_at
-                                ).toLocaleString("fr-FR"),
-                              },
-                              Giver: {
-                                UserHasCrypto: undefined,
-                                dollarAvailables: 0,
-                                pseudo: trade.Giver.pseudo,
-                              },
-                              Receiver: {
-                                UserHasCrypto: undefined,
-                                dollarAvailables: 0,
-                                pseudo: trade.Receiver.pseudo,
-                              },
-                              id: "",
-                            }}
-                          />
-                        </Fragment>
-                      );
-                    })}
+                              }}
+                            />
+                          </Fragment>
+                        );
+                      })}
                 </tbody>
               </table>
             </div>

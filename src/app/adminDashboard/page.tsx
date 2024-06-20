@@ -5,9 +5,6 @@ import TradeTable from "@/Components/TradeTable/TradeTable";
 import UserTable from "@/Components/UserTable/UserTable";
 import { CryptoProps, PromoCodeProps } from "@/Utils/types";
 import React from "react";
-import { FaBitcoin } from "react-icons/fa";
-import { MdAdd } from "react-icons/md";
-import { RiAddLargeFill } from "react-icons/ri";
 
 const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
   return (
@@ -333,12 +330,12 @@ const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
                 </div> */}
 
                 <div className="flex flex-col flex-wrap my-4">
-                  <TradeTable />
-                  <UserTable min={0} max={5} />
+                  <TradeTable min={0} max={5} isVisible={true} />
+                  <UserTable min={0} max={5} isVisible={true} />
                   <AdminCodeTable promoCode={promoCode} />
                 </div>
               </div>
-              <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {/* <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -420,17 +417,17 @@ const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </main>
 
-          <p className="text-center text-sm text-gray-500 my-10">
+          {/* <p className="text-center text-sm text-gray-500 my-10">
             &copy; 2019-2021{" "}
             <a href="#" className="hover:underline" target="_blank">
               Themesberg
             </a>
             . All rights reserved.
-          </p>
+          </p> */}
         </div>
       </div>
       <script async defer src="https://buttons.github.io/buttons.js"></script>

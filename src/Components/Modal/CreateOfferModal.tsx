@@ -42,9 +42,10 @@ export const CreateOfferModal = ({
         if (res.status !== undefined) {
           toast.success("Offer Created !");
           handleClose();
+          window.location.reload();
           return;
         } else {
-          toast.error("Failed !");
+          toast.error(res.response.data.message);
           handleClose();
         }
       })
@@ -93,6 +94,7 @@ export const CreateOfferModal = ({
                     required: true,
                   })}
                 />{" "}
+                {errors.amount && <ErrorMsg error={"amount"} />}
               </div>
               <div className="flex items-center">
                 <button

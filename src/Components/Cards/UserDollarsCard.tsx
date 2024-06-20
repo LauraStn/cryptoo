@@ -1,16 +1,13 @@
 import { getMyAssets } from "@/Service/user";
 import { USDollar } from "@/Utils/currencyFormat";
 import { UserProps } from "@/Utils/types";
-import { log } from "console";
 import React, { useEffect, useState } from "react";
 
-const UserDollarsCard = ({ user }: { user: UserProps }) => {
+const UserDollarsCard = () => {
   const [myAssets, setMyAssets] = useState<UserProps>();
 
   useEffect(() => {
     getMyAssets().then((res) => {
-      console.log(myAssets);
-
       setMyAssets(res.data);
     });
   }, []);

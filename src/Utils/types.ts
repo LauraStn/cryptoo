@@ -1,5 +1,3 @@
-import exp from "constants";
-
 export type RegisterProps = {
   email: string;
   firstName: string;

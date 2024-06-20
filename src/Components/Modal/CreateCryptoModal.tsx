@@ -34,14 +34,13 @@ export const CreateCryptoModal = ({ crypto }: { crypto: CryptoProps }) => {
   const onSubmit: SubmitHandler<CryptoProps> = (data) =>
     createCrypto(data)
       .then((res) => {
-        console.log(res);
-
         if (res.status !== undefined) {
           toast.success("Crypto Created !");
           handleClose();
+          window.location.reload();
           return;
         } else {
-          toast.error("Failed !");
+          toast.error(res.response.data.message);
           handleClose();
         }
       })

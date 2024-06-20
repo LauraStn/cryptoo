@@ -1,12 +1,43 @@
+"use client";
+import { isAdmin } from "@/Utils/isAdmin";
+import { isConnected } from "@/Utils/isConnected";
+import { useAuth } from "@/context/authcontext";
 import Link from "next/link";
-import React from "react";
+import { redirect, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-const Header = () => {
+type Props = {
+  isLogged: boolean;
+};
+
+const Header = (props: Props) => {
+  // const { push } = useRouter();
+
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const jwt = window.localStorage.getItem("token");
+  //     const x = jwt !== null ? true : false;
+  //     setLoggedIn(x);
+  //     console.log(loggedIn);
+  //   }
+  // }, [loggedIn]);
+
+  // const handleLogout = () => {
+  //   window.localStorage.removeItem("token");
+  //   setLoggedIn(false);
+  //   redirect("/");
+  // };
+  const role = isAdmin();
+  isAdmin();
+
+  const { loggedIn, logout } = useAuth();
   return (
     <header className="sticky z-20 top-0">
       <nav className="bg-gray-200 text-gray-600 border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="#" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <img
               src="https://cdn.pixabay.com/photo/2019/04/15/20/42/bitcoin-4130299_1280.png"
               className="mr-3 h-6 sm:h-9"
@@ -15,20 +46,32 @@ const Header = () => {
             <span className="self-center text-xl font-semibold whitespace-nowra">
               CrypToo
             </span>
-          </a>
+          </Link>
           <div className="flex items-center lg:order-2">
-            <Link
-              href="/login"
-              className="text-gray-700 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none "
-            >
-              Log in
-            </Link>
-            <Link
-              href="/register"
-              className=" bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Get started
-            </Link>
+            {loggedIn ? (
+              <button
+                className=" bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                onClick={logout}
+              >
+                Log Out
+              </button>
+            ) : (
+              <div>
+                <Link
+                  href="/login"
+                  className="text-gray-700 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none "
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="/register"
+                  className=" bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >
+                  Get started
+                </Link>
+              </div>
+            )}
+
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -67,42 +110,61 @@ const Header = () => {
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <Link
-                  href="/"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                  aria-current="page"
-                >
-                  Home
-                </Link>
-              </li>
+            {" "}
+            {loggedIn ? (
+              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                <li>
+                  <Link
+                    href="/"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    aria-current="page"
+                  >
+                    Home
+                  </Link>
+                </li>
 
-              <li>
-                <Link
-                  href="/crypto"
-                  className="block py-2 pr-4 pl-3 text-gray-900 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Crypto
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/offer"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Offers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/userDashboard"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Profil
-                </Link>
-              </li>
-            </ul>
+                <li>
+                  <Link
+                    href="/crypto"
+                    className="block py-2 pr-4 pl-3 text-gray-900 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Crypto
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/offer"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Offers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/userDashboard"
+                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Profil
+                  </Link>
+                </li>
+                {role ? (
+                  <li>
+                    <Link
+                      href="/adminDashboard"
+                      className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Admin
+                    </Link>
+                  </li>
+                ) : (
+                  <span></span>
+                )}
+              </ul>
+            ) : (
+              <span className="self-center text-xl font-semibold whitespace-nowra">
+                Welcome to our crypto website
+              </span>
+            )}
           </div>
         </div>
       </nav>{" "}

@@ -4,7 +4,15 @@ import UserRow, { UserAssetsProps } from "./UserRow";
 import { getAllUsers } from "@/Service/user";
 import Link from "next/link";
 
-const UserTable = ({ min, max }: { min: number; max: number }) => {
+const UserTable = ({
+  min,
+  max,
+  isVisible,
+}: {
+  min: number;
+  max: number;
+  isVisible: boolean;
+}) => {
   const [allUsers, setAllUsers] = useState<UserAssetsProps[]>();
 
   useEffect(() => {
@@ -20,19 +28,22 @@ const UserTable = ({ min, max }: { min: number; max: number }) => {
           <h3 className="text-xl font-bold leading-none text-gray-900">
             Richest Users
           </h3>
-          <Link
-            href="/allUsers"
-            className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-          >
-            View all
-          </Link>
+          {isVisible && (
+            <Link
+              href="/allUsers"
+              className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+            >
+              View all
+            </Link>
+          )}
         </div>
         <div className="flow-root">
           <ul role="list" className="divide-y divide-gray-200">
             {allUsers &&
-              allUsers.slice(min, max).map((user) => {
+              allUsers.slice(min, max).map((user, index) => {
+                const key = `${user.firstName}-${user.lastName}-${index}`;
                 return (
-                  <Fragment key={user.pseudo}>
+                  <Fragment key={key}>
                     <UserRow
                       dollarAvailables={user.dollarAvailables}
                       pseudo={user.pseudo}

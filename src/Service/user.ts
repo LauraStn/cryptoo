@@ -1,6 +1,7 @@
+import { UserProps } from "@/Utils/types";
 import axios from "axios";
 
-export async function getMyAssets() {
+export async function getMyAssets(): Promise<any> {
   let url = `${process.env.NEXT_PUBLIC_API_URL}user/my-assets`;
 
   let axiosConfig = {

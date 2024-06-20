@@ -14,9 +14,7 @@ export const EditOfferModal = ({
   amount: number;
 }) => {
   useEffect(() => {
-    getMyAssets().then((res) => {
-      console.log(res.data.UserHasCrypto);
-    });
+    getMyAssets().then((res) => {});
   }, []);
   const style = {
     position: "absolute" as "absolute",
@@ -41,14 +39,13 @@ export const EditOfferModal = ({
   const onSubmit: SubmitHandler<OffersProps> = (data) =>
     updateOffer(offer.id, offer.Crypto.id, data.amount)
       .then((res) => {
-        console.log(offer);
-
         if (res.status !== undefined) {
           toast.success("Crypto Updated !");
           handleClose();
+          window.location.reload();
           return;
         } else {
-          toast.error("Failed !");
+          toast.error(res.response.data.message);
           handleClose();
         }
       })

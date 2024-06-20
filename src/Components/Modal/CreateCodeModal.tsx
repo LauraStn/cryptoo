@@ -42,9 +42,11 @@ export const CreateCodeModal = ({
         if (res.status !== undefined) {
           toast.success("Promo Code Created !");
           handleClose();
+          window.location.reload();
+
           return;
         } else {
-          toast.error("Failed !");
+          toast.error(res.response.data.message);
           handleClose();
         }
       })
