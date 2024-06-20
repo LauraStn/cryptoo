@@ -2,10 +2,17 @@ import { getAllPromoCodes } from "@/Service/promoCode";
 import { PromoCodeProps } from "@/Utils/types";
 import React, { Fragment, useEffect, useState } from "react";
 import AdminCodeRow from "./AdminCodeRow";
-import { MdAdd } from "react-icons/md";
 import { CreateCodeModal } from "../Modal/CreateCodeModal";
 
-const AdminCodeTable = ({ promoCode }: { promoCode: PromoCodeProps }) => {
+const AdminCodeTable = ({
+  min,
+  max,
+  promoCode,
+}: {
+  min: number;
+  max: number;
+  promoCode: PromoCodeProps;
+}) => {
   const [allPromoCodes, setAllPromoCodes] = useState<PromoCodeProps[]>();
 
   useEffect(() => {
@@ -38,7 +45,7 @@ const AdminCodeTable = ({ promoCode }: { promoCode: PromoCodeProps }) => {
           </thead>
           <tbody className="divide-y divide-gray-100">
             {allPromoCodes &&
-              allPromoCodes?.map((code) => {
+              allPromoCodes?.slice(min, max).map((code) => {
                 return (
                   <Fragment key={code.id}>
                     <AdminCodeRow

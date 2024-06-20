@@ -137,7 +137,7 @@ export const RegisterForm = () => {
             type="password"
             id="confirmPassword"
             className="w-full px-3 dark:bg-white py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            {...register("password", { required: true })}
+            {...register("confirmPassword", { required: true })}
           />
           {errors.password && <ErrorMsg error={"confirm password"} />}
         </div>

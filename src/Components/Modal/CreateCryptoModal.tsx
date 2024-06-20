@@ -37,7 +37,6 @@ export const CreateCryptoModal = ({ crypto }: { crypto: CryptoProps }) => {
         if (res.status !== undefined) {
           toast.success("Crypto Created !");
           handleClose();
-          window.location.reload();
           return;
         } else {
           toast.error(res.response.data.message);

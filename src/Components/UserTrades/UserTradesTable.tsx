@@ -1,4 +1,3 @@
-import { getAllTrades } from "@/Service/trade";
 import React, { Fragment, useEffect, useState } from "react";
 import { TradeProps } from "@/Utils/types";
 import { getMyTrades } from "@/Service/user";
@@ -23,14 +22,7 @@ const UserTradesTable = () => {
             This is a list of latest transactions
           </span>
         </div>
-        <div className="flex-shrink-0">
-          <a
-            href="#"
-            className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
-          >
-            View all
-          </a>
-        </div>
+        <div className="flex-shrink-0"></div>
       </div>
       <div className="flex flex-col mt-8">
         <div className="overflow-x-auto rounded-lg">

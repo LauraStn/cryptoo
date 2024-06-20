@@ -332,7 +332,7 @@ const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
                 <div className="flex flex-col flex-wrap my-4">
                   <TradeTable min={0} max={5} isVisible={true} />
                   <UserTable min={0} max={5} isVisible={true} />
-                  <AdminCodeTable promoCode={promoCode} />
+                  <AdminCodeTable promoCode={promoCode} min={0} max={15} />
                 </div>
               </div>
               {/* <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">

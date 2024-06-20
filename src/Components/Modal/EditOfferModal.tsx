@@ -42,7 +42,6 @@ export const EditOfferModal = ({
         if (res.status !== undefined) {
           toast.success("Crypto Updated !");
           handleClose();
-          window.location.reload();
           return;
         } else {
           toast.error(res.response.data.message);

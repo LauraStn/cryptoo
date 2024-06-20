@@ -33,7 +33,6 @@ export const EditCodeModal = ({ promoCode }: { promoCode: PromoCodeProps }) => {
         if (res.status !== undefined) {
           toast.success("Code Updated !");
           handleClose();
-          window.location.reload();
           return;
         } else {
           toast.error(res.response.data.message);

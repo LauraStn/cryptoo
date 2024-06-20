@@ -42,7 +42,6 @@ export const CreateOfferModal = ({
         if (res.status !== undefined) {
           toast.success("Offer Created !");
           handleClose();
-          window.location.reload();
           return;
         } else {
           toast.error(res.response.data.message);

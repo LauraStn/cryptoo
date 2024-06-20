@@ -5,6 +5,7 @@ export type RegisterProps = {
   pseudo: string;
   city: string;
   password: string;
+  confirmPassword: string;
   promoCode?: string;
   age: number;
 };
