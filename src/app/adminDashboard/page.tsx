@@ -3,15 +3,29 @@ import AdminCodeTable from "@/Components/AdminPromoCode/AdminCodeTable";
 import { CreateCryptoModal } from "@/Components/Modal/CreateCryptoModal";
 import TradeTable from "@/Components/TradeTable/TradeTable";
 import UserTable from "@/Components/UserTable/UserTable";
-import { CryptoProps, PromoCodeProps } from "@/Utils/types";
 import React from "react";
+type CryptoProps = {
+  id: string;
+  name: string;
+  quantity: number;
+  value: number;
+  image: string;
+  updated_at: string;
+};
 
-export const adminDashboard = ({
-  crypto,
-  promoCode,
-}: {
+type PromoCodeProps = {
+  id: string;
+  name: string;
+  value: number;
+};
+
+type AdminDashboardProps = {
   crypto: CryptoProps;
   promoCode: PromoCodeProps;
+};
+const AdminDashboard: React.FC<AdminDashboardProps> = ({
+  crypto,
+  promoCode,
 }) => {
   return (
     <div>
