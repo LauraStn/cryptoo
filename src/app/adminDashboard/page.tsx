@@ -6,7 +6,10 @@ import UserTable from "@/Components/UserTable/UserTable";
 import { CryptoProps, PromoCodeProps } from "@/Utils/types";
 import React from "react";
 
-export const page = (crypto: CryptoProps, promoCode: PromoCodeProps) => {
+export const adminDashboard = (
+  crypto: CryptoProps,
+  promoCode: PromoCodeProps
+) => {
   return (
     <div>
       <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
