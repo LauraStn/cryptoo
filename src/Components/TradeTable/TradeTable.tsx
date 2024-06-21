@@ -18,6 +18,8 @@ const TradeTable = ({
 
   useEffect(() => {
     getAllTrades().then((res) => {
+      console.log(res);
+
       setallTrades(res.data);
     });
   }, []);

@@ -137,7 +137,11 @@ export const RegisterForm = () => {
             type="password"
             id="confirmPassword"
             className="w-full px-3 dark:bg-white py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            {...register("confirmPassword", { required: true })}
+            {...register("confirmPassword", {
+              required: true,
+              validate: (value) =>
+                value === watch("password") || "The passwords do not match",
+            })}
           />
           {errors.password && <ErrorMsg error={"confirm password"} />}
         </div>
